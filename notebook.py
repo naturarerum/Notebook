@@ -1,14 +1,15 @@
 import datetime
 
-class Note:
 
+class Note:
     """represents a note in the notebook"""
+
     last_id = 0
 
     def __init__(self, memo, tag):
         self.memo = memo
         self.tag = tag
-        #self.note_id = last_id + 1
+        Note.last_id += 1
 
     def set_date(self):
         now = datetime.datetime.now()
@@ -20,7 +21,14 @@ class Note:
 
 
 class NoteBook:
-    pass
+    """represents a notebook"""
+
+    note_list = []
+
+    def search_note(self):
+        pass
+    
+    
 
 def main():
     note1 = Note("ceci est mon premier essai de mémo", "test")
@@ -28,6 +36,9 @@ def main():
     print("Memo : " + note1.memo)
     print("tag : " + note1.tag)
     print("date de création :", date_creation)
+    print(note1.last_id)
+    note2 = Note("ceci est mon deuxieme essai de mémo", "test2")
+    print(note2.last_id)
 
 # Main
 if __name__ == '__main__':
