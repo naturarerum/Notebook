@@ -1,5 +1,6 @@
 import datetime
 
+
 class Note:
     """represents a note in the notebook"""
 
@@ -9,7 +10,6 @@ class Note:
         self.memo = memo
         self.tag = tag
         Note.last_id += 1
-    
 
     def set_date(self):
         now = datetime.datetime.now()
@@ -21,31 +21,42 @@ class Note:
 
 
 class NoteBook:
-    """represents a notebook"""
 
-    def __init__(self):
-        self.note_list = []
-    
-    def new_note(self,memo,tag=''):
-        self.note_list.append(Note(memo,tag))
+    list_of_notes = []
 
-    
+    def add_note(self, Note):
+        NoteBook.list_of_notes.append(Note)
+
+    def modify_note(self):
+        pass
+
+    def display_note(self):
+        for notes in NoteBook.list_of_notes:
+            print(notes)
 
     def search_note(self):
         pass
-    
+
+
 def main():
-    note1 = Note("ceci est mon premier essai de mémo", "test")
-    date_creation = note1.set_date()
-    print("Memo : " + note1.memo)
-    print("tag : " + note1.tag)
-    print("date de création :", date_creation)
-    print(note1.last_id)
-    note2 = Note("ceci est mon deuxieme essai de mémo", "test2")
-    print(note2.last_id)
-    nb = NoteBook()
-    nb.new_note(note1)
-    print(nb.note_list)
+    while True:
+        print("Enter 1 to create a note")
+        print("Enter 2 to display the list of notes")
+        print("Enter 3 to exit")
+        user_choice = (int(input()))
+        if user_choice is 1:
+            note = Note("ceci est mon premier essai de mémo", "test")
+            date_creation = note.set_date()
+            nb = NoteBook()
+            nb.add_note(note)
+            print("Memo : " + " Memo : " + note.memo + " Date : " +
+                  date_creation + " Tag : " + note.tag + " id : " + str(Note.last_id))
+            nb.display_note()
+            print("Menu : ")
+        elif user_choice is 2:
+            nb.display_note()
+        elif user_choice is 3:
+            quit()
 
 
 # Main
